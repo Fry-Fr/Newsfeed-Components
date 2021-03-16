@@ -114,3 +114,46 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const divArticles = document.body.querySelector('.articles')
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+  const article = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const Date = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const button = document.createElement('span')
+
+  article.classList.add('article')
+  h2.classList.add('h2')
+  Date.classList.add('date')
+  button.classList.add('expandButton')
+  button.textContent = '+'
+  h2.textContent = title
+  Date.textContent = date
+  paragraph1.textContent = firstParagraph
+  paragraph2.textContent = secondParagraph
+  paragraph3.textContent = thirdParagraph
+
+  button.addEventListener('click',(event)=>{article.classList.toggle('article-open')})
+  
+  article.appendChild(h2)
+  article.appendChild(Date)
+  article.appendChild(paragraph1)
+  article.appendChild(paragraph2)
+  article.appendChild(paragraph3)
+  article.appendChild(button)
+  divArticles.append(article)
+
+  return article
+}
+data.forEach(obj => {articleMaker(obj)})
+
+const articleObj = {
+  title: 'All new article object',
+  date: 'Mar 15th, 2021',
+  firstParagraph: 'This demonstrates my ability to learn.',
+  secondParagraph: 'This demonstrates my ability to program.',
+  thirdParagraph: 'This demonstrates um...',
+}
+articleMaker(articleObj)
